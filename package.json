@@ -1,6 +1,6 @@
 {
   "name": "lite-unit-test",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Its a wrapper tool to build unit test in node with the native assert library",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
