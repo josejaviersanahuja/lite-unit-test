@@ -34,5 +34,6 @@
   "bin": {
     "lite-unit-test": "./bin/index.js"
   },
-  "man": "https://github.com/josejaviersanahuja/lite-unit-test#readme"
+  "man": "https://github.com/josejaviersanahuja/lite-unit-test#readme",
+  "files": ["lib/**/*", "bin/**/*", "README.md", "LICENSE", "package.json"]
 }
