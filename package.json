@@ -4,21 +4,34 @@
   "description": "Its a wrapper tool to build unit test in node with the native assert library",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
+    "lint": "eslint ./src --ext .ts",
+    "format": "prettier --write ./src/**/*.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/josejaviersanahuja/lite-unit-test.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["unit test", "assert", "node", "typescript", "npm"],
+  "author": "José Javier Sanahuja <josejaviersanahuja@gmail.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/josejaviersanahuja/lite-unit-test/issues"
+    "url": "https://github.com/josejaviersanahuja/lite-unit-test/issues",
+    "email": "josejaviersanahuja@gmail.com"
   },
   "homepage": "https://github.com/josejaviersanahuja/lite-unit-test#readme",
   "devDependencies": {
     "@types/node": "^18.14.6",
+    "@typescript-eslint/eslint-plugin": "^5.54.1",
+    "@typescript-eslint/parser": "^5.54.1",
+    "eslint": "^8.35.0",
+    "eslint-config-prettier": "^8.7.0",
+    "prettier": "^2.8.4",
     "typescript": "^4.9.5"
-  }
+  },
+  "bin": {
+    "lite-unit-test": "./bin/index.js"
+  },
+  "man": "https://github.com/josejaviersanahuja/lite-unit-test#readme"
 }
