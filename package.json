@@ -1,6 +1,6 @@
 {
   "name": "lite-unit-test",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Its a wrapper tool to build unit test in node with the native assert library",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -14,7 +14,13 @@
     "type": "git",
     "url": "git+https://github.com/josejaviersanahuja/lite-unit-test.git"
   },
-  "keywords": ["unit test", "assert", "node", "typescript", "npm"],
+  "keywords": [
+    "unit test",
+    "assert",
+    "node",
+    "typescript",
+    "npm"
+  ],
   "author": "José Javier Sanahuja <josejaviersanahuja@gmail.com",
   "license": "ISC",
   "bugs": {
@@ -35,5 +41,11 @@
     "lite-unit-test": "./bin/index.js"
   },
   "man": "https://github.com/josejaviersanahuja/lite-unit-test#readme",
-  "files": ["lib/**/*", "bin/**/*", "README.md", "LICENSE", "package.json"]
+  "files": [
+    "lib/**/*",
+    "bin/**/*",
+    "README.md",
+    "LICENSE",
+    "package.json"
+  ]
 }
