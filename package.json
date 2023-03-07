@@ -2,7 +2,8 @@
   "name": "lite-unit-test",
   "version": "1.0.0",
   "description": "Its a wrapper tool to build unit test in node with the native assert library",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
     "lint": "eslint ./src --ext .ts",
