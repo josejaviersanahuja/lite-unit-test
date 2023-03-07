@@ -53,7 +53,6 @@ class TestEngine {
                 testValue(() => {
                   // if it calls back without throwing, then it succeded. log in green
                   console.log("\x1b[32m%s\x1b[0m", testName);
-                  // console.log('\x1b[33m%s\x1b[0m', key + ': ','\x1b[32m%s\x1b[0m', testName)
                   counter++;
                   successes++;
                   if (counter === limit) {
@@ -67,7 +66,7 @@ class TestEngine {
                     name: testName,
                     error: error.toString(),
                   });
-                  console.log("\x1b[31m%s\x1b[0m", testName);
+                  console.log('\x1b[33m%s\x1b[0m', key + ': ', `\x1b[31m${testName}\x1b[0m`, 'FAILED');
                   counter++;
                   if (counter === limit) {
                     cli.produceTestReport(limit, successes, errors);
@@ -77,7 +76,7 @@ class TestEngine {
                     typeof error === "object" && error !== null,
                     "Error should be an object"
                   );
-                  console.log("QUE PASA?", error.toString());
+                  // console.log("QUE PASA?", error.toString());
                   throw error;
                 }
               }
