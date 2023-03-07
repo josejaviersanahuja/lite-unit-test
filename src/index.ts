@@ -11,15 +11,24 @@ export type LightTest = {
 
 class TestEngine {
   tests: LightTest;
+  prepareEnviroment: () => Promise<void>;
   constructor() {
     this.tests = {};
+    this.prepareEnviroment = async () => {
+      console.log('\x1b[33m%s\x1b[0m', 'No function provided for prepareEnviroment');    
+      console.log('\x1b[33m%s\x1b[0m', 'This is the perfect place for seeding db or other stuff');    
+    }
+  }
+
+  setEnviroment(fn: () => Promise<void>) {
+    this.prepareEnviroment = fn;
   }
 
   addTestModule(name: string, module: LightTestModule) {
     this.tests[name] = module;
   }
 
-  countTests() {
+  private countTests() {
     let counter = 0;
     for (const key in this.tests) {
       if (Object.hasOwnProperty.call(this.tests, key)) {
@@ -35,6 +44,9 @@ class TestEngine {
   }
 
   async runTests() {
+    await this.prepareEnviroment();
+    console.log('\x1b[33m%s\x1b[0m', 'Enviroment Loaded');
+    
     const errors: { name: string; error: string }[] = [];
     let successes = 0;
     const limit = this.countTests();
