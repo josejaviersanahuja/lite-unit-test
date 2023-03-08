@@ -47,10 +47,13 @@ class TestEngine {
     await this.prepareEnviroment();
     setTimeout(() => {
       console.log('\x1b[33m%s\x1b[0m', 'Preparing Enviroment');
-    }, 1000);
+    }, 2000);
+    setTimeout(() => {
+      console.log('\x1b[33m%s\x1b[0m', 'Loading Tests');
+    }, 4000);
     setTimeout(() => {
       console.log('\x1b[33m%s\x1b[0m', 'Almost Ready');
-    }, 2000);
+    }, 6000);
     setTimeout(() => {
       console.log('\x1b[33m%s\x1b[0m', 'Enviroment Loaded');
 
@@ -104,7 +107,7 @@ class TestEngine {
           }
         }
       }
-    }, 3000);
+    }, 8000);
   }
 }
 
