@@ -46,6 +46,12 @@ class TestEngine {
   async runTests() {
     await this.prepareEnviroment();
     setTimeout(() => {
+      console.log('\x1b[33m%s\x1b[0m', 'Preparing Enviroment');
+    }, 1000);
+    setTimeout(() => {
+      console.log('\x1b[33m%s\x1b[0m', 'Almost Ready');
+    }, 2000);
+    setTimeout(() => {
       console.log('\x1b[33m%s\x1b[0m', 'Enviroment Loaded');
 
       const errors: { name: string; error: string }[] = [];
@@ -98,7 +104,7 @@ class TestEngine {
           }
         }
       }
-    }, 1000);
+    }, 3000);
   }
 }
 
