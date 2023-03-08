@@ -15,8 +15,8 @@ class TestEngine {
   constructor() {
     this.tests = {};
     this.prepareEnviroment = async () => {
-      console.log('\x1b[33m%s\x1b[0m', 'No function provided for prepareEnviroment');    
-      console.log('\x1b[33m%s\x1b[0m', 'This is the perfect place for seeding db or other stuff');    
+      console.log('\x1b[33m%s\x1b[0m', 'No function provided for prepareEnviroment');
+      console.log('\x1b[33m%s\x1b[0m', 'This is the perfect place for seeding db or other stuff');
     }
   }
 
@@ -45,58 +45,60 @@ class TestEngine {
 
   async runTests() {
     await this.prepareEnviroment();
-    console.log('\x1b[33m%s\x1b[0m', 'Enviroment Loaded');
-    
-    const errors: { name: string; error: string }[] = [];
-    let successes = 0;
-    const limit = this.countTests();
-    let counter = 0;
+    setTimeout(() => {
+      console.log('\x1b[33m%s\x1b[0m', 'Enviroment Loaded');
 
-    for (const key in this.tests) {
-      if (Object.hasOwnProperty.call(this.tests, key)) {
-        const subTest = this.tests[key];
-        for (const testName in subTest) {
-          if (Object.hasOwnProperty.call(subTest, testName)) {
-            (function () {
-              // const tmpTestName = testName
-              const testValue = subTest[testName];
-              // Call the test
-              try {
-                testValue(() => {
-                  // if it calls back without throwing, then it succeded. log in green
-                  console.log("\x1b[32m%s\x1b[0m", testName);
-                  counter++;
-                  successes++;
-                  if (counter === limit) {
-                    cli.produceTestReport(limit, successes, errors);
-                  }
-                });
-              } catch (error) {
-                // if it throws it failed
-                if (error instanceof assert.AssertionError) {
-                  errors.push({
-                    name: testName,
-                    error: error.toString(),
+      const errors: { name: string; error: string }[] = [];
+      let successes = 0;
+      const limit = this.countTests();
+      let counter = 0;
+
+      for (const key in this.tests) {
+        if (Object.hasOwnProperty.call(this.tests, key)) {
+          const subTest = this.tests[key];
+          for (const testName in subTest) {
+            if (Object.hasOwnProperty.call(subTest, testName)) {
+              (function () {
+                // const tmpTestName = testName
+                const testValue = subTest[testName];
+                // Call the test
+                try {
+                  testValue(() => {
+                    // if it calls back without throwing, then it succeded. log in green
+                    console.log("\x1b[32m%s\x1b[0m", testName);
+                    counter++;
+                    successes++;
+                    if (counter === limit) {
+                      cli.produceTestReport(limit, successes, errors);
+                    }
                   });
-                  console.log('\x1b[33m%s\x1b[0m', key + ': ', `\x1b[31m${testName}\x1b[0m`, 'FAILED');
-                  counter++;
-                  if (counter === limit) {
-                    cli.produceTestReport(limit, successes, errors);
+                } catch (error) {
+                  // if it throws it failed
+                  if (error instanceof assert.AssertionError) {
+                    errors.push({
+                      name: testName,
+                      error: error.toString(),
+                    });
+                    console.log('\x1b[33m%s\x1b[0m', key + ': ', `\x1b[31m${testName}\x1b[0m`, 'FAILED');
+                    counter++;
+                    if (counter === limit) {
+                      cli.produceTestReport(limit, successes, errors);
+                    }
+                  } else {
+                    assert(
+                      typeof error === "object" && error !== null,
+                      "Error should be an object"
+                    );
+                    // console.log("QUE PASA?", error.toString());
+                    throw error;
                   }
-                } else {
-                  assert(
-                    typeof error === "object" && error !== null,
-                    "Error should be an object"
-                  );
-                  // console.log("QUE PASA?", error.toString());
-                  throw error;
                 }
-              }
-            })();
+              })();
+            }
           }
         }
       }
-    }
+    }, 1000);
   }
 }
 
